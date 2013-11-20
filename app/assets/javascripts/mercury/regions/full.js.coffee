@@ -151,10 +151,12 @@ class @Mercury.Regions.Full extends Mercury.Region
           if jQuery.browser.webkit && @selection().commonAncestor().closest('li, ul, ol', @element).length == 0
             event.preventDefault()
             @document.execCommand('insertParagraph', false, null)
+            window.repairParagraphsChrome()
           else if @specialContainer || jQuery.browser.opera
             # mozilla: pressing enter in any element besides a div handles strangely
             event.preventDefault()
             @document.execCommand('insertHTML', false, '<br/>')
+            window.repairParagraphsFirefox()
 
         when 9 # tab
           event.preventDefault()
